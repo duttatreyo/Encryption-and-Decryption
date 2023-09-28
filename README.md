@@ -28,3 +28,11 @@ python3 crypto_utility.py
 Limitations
 SHA-256 and other hashing algorithms are one-way functions; hence only hashing is supported.
 The utility does not validate whether the input for decryption is valid ciphertext for the chosen cipher.
+
+
+
+---
+
+Please be aware that some functionalities, like AES encryption/decryption and salting, are not included in HTML code due to the intricate nature of their implementation in JavaScript and the absence of corresponding methods in the Web Crypto API.
+
+---
