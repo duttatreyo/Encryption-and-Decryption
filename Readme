@@ -18,6 +18,8 @@ Input the plaintext or ciphertext as prompted.
 If hashing, you have the option to add salt to your input.
 The program will output the result of the operation.
 
+Alternatively, you have the option to download the HTML code and employ the utility for encryption or decryption tasks.
+
 
 Requirements
 Python 3.x
