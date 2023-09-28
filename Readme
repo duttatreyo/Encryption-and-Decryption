@@ -26,7 +26,7 @@ Python 3.x
 Required Libraries: hashlib , cryptography
 
 Example
-python3 crypto_utility.py
+$python3 crypto_utility.py
 
 
 Limitations
