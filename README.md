@@ -2,14 +2,15 @@ Cryptographic Utility
 
 This utility is a Python-based command-line tool developed to provide encryption, decryption, and hashing functionalities. It supports various ciphers and hashing algorithms, providing a user-friendly interface to perform cryptographic operations.
 
+
 Features
 Supports Encryption & Decryption using Caesar and Atbash ciphers.
 Supports Hashing using SHA-256, MD5, and other hashing algorithms.
 Supports Salt addition during hashing.
 User-friendly command-line interface.
 
-How to Use:
 
+How to Use
 Run the Python script in a terminal or command prompt.
 Follow the prompts to select whether you want to encrypt, decrypt, or hash your input.
 Based on the chosen operation, select the desired cipher or hashing algorithm.
@@ -22,6 +23,7 @@ The program will output the result of the operation.
 Requirements
 Python 3.x
 Required Libraries: hashlib , cryptography
+
 
 Example
 python3 crypto_utility.py
