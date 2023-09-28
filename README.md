@@ -1,29 +1,30 @@
 Cryptographic Utility
 
-This is a simple, user-friendly cryptographic utility tool created to demonstrate encryption, decryption, and hashing using different ciphers and hashing algorithms. It is implemented using HTML, CSS, and JavaScript, allowing users to interact with it through a web browser.
+This utility is a Python-based command-line tool developed to provide encryption, decryption, and hashing functionalities. It supports various ciphers and hashing algorithms, providing a user-friendly interface to perform cryptographic operations.
 
 Features
-Encryption and Decryption: Supports Caesar and Atbash ciphers.
-Hashing: Supports SHA-256 hashing algorithm.
-User-Friendly Interface: Easily select between operations and algorithms, input text, and view results.
-Safe & Secure: Performs all operations client-side, meaning your data never leaves your computer.
+Supports Encryption & Decryption using Caesar and Atbash ciphers.
+Supports Hashing using SHA-256, MD5, and other hashing algorithms.
+Supports Salt addition during hashing.
+User-friendly command-line interface.
 
 How to Use
-Open the index.html file in a modern web browser.
-Enter the text you want to encrypt, decrypt, or hash in the provided textarea.
-Select the operation (Encrypt, Decrypt, or Hash) you want to perform.
-Choose the cipher or hashing algorithm you want to use.
-If encrypting or decrypting using the Caesar cipher, specify the shift value.
-If hashing using SHA-256, optionally add a salt.
-Click the "Perform Operation" button to execute the selected operation and view the result.
+Run the Python script in a terminal or command prompt.
+Follow the prompts to select whether you want to encrypt, decrypt, or hash your input.
+Based on the chosen operation, select the desired cipher or hashing algorithm.
+Input the plaintext or ciphertext as prompted.
+If hashing, you have the option to add salt to your input.
+The program will output the result of the operation.
+Supported Operations, Ciphers, and Algorithms
 
-Supported Ciphers & Hashing Algorithms
-Ciphers
-Caesar Cipher: A substitution cipher where each letter in the plaintext is shifted a certain number of places down or up the alphabet.
-Atbash Cipher: A substitution cipher where the alphabet is reversed.
-Hashing Algorithms
-SHA-256: A cryptographic hash function from the SHA-2 family, producing a 256-bit (32-byte) hash value, typically rendered as a 64-digit hexadecimal number.
 
-Note
-For SHA-256, only hashing is supported as it is a one-way function and cannot be decrypted.
-All operations are performed on the client side; no data is sent to or stored on a server.
+Requirements
+Python 3.x
+Required Libraries: hashlib , cryptography
+
+Example
+python3 crypto_utility.py
+
+Limitations
+SHA-256 and other hashing algorithms are one-way functions; hence only hashing is supported.
+The utility does not validate whether the input for decryption is valid ciphertext for the chosen cipher.
