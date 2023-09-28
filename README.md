@@ -8,7 +8,8 @@ Supports Hashing using SHA-256, MD5, and other hashing algorithms.
 Supports Salt addition during hashing.
 User-friendly command-line interface.
 
-How to Use
+How to Use:
+
 Run the Python script in a terminal or command prompt.
 Follow the prompts to select whether you want to encrypt, decrypt, or hash your input.
 Based on the chosen operation, select the desired cipher or hashing algorithm.
