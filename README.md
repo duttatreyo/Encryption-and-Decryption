@@ -11,12 +11,17 @@ User-friendly command-line interface.
 How to Use:
 
 Run the Python script in a terminal or command prompt.
+
 Follow the prompts to select whether you want to encrypt, decrypt, or hash your input.
+
 Based on the chosen operation, select the desired cipher or hashing algorithm.
+
 Input the plaintext or ciphertext as prompted.
+
 If hashing, you have the option to add salt to your input.
+
 The program will output the result of the operation.
-Supported Operations, Ciphers, and Algorithms
+
 
 
 Requirements
