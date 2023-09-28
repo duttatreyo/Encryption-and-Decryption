@@ -1,4 +1,5 @@
 Python Encryption & Decryption Utility
+
 This utility is a Python-based command-line tool developed to provide encryption, decryption, and hashing functionalities. It supports various ciphers and hashing algorithms, providing a user-friendly interface to perform cryptographic operations.
 
 
