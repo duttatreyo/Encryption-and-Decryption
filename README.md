@@ -1,4 +1,4 @@
-#Cryptographic Utility
+Cryptographic Utility
 
 This is a simple, user-friendly cryptographic utility tool created to demonstrate encryption, decryption, and hashing using different ciphers and hashing algorithms. It is implemented using HTML, CSS, and JavaScript, allowing users to interact with it through a web browser.
 
