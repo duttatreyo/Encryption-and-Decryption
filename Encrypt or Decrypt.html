@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cipher Utility</title>
+    <style>
+        body {
+            background-color: #f4f4f4;
+            color: #333;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        #app {
+            width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #ccc;
+            background-color: #ffffff;
+        }
+
+        label, textarea, select, input, button {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        textarea {
+            resize: none;
+            height: 60px;
+        }
+
+        button {
+            background-color: #28a745;
+            color: #ffffff;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <label for="text">Enter Text:</label>
+        <textarea id="text"></textarea>
+        <label for="operation">Choose Operation:</label>
+        <select id="operation" onchange="toggleCipherOptions()">
+            <option value="encrypt">Encrypt</option>
+            <option value="decrypt">Decrypt</option>
+            <option value="hash">Hash</option>
+        </select>
+        <label for="cipher">Choose Cipher/Hash:</label>
+        <select id="cipher" onchange="toggleShiftAndSaltInput()">
+            <option value="caesar">Caesar Cipher</option>
+            <option value="atbash">Atbash Cipher</option>
+            <option value="sha-256">SHA-256 Hash</option>
+        </select>
+        <label for="shift" id="shift-label">Shift (Caesar Cipher Only):</label>
+        <input type="number" id="shift" value="1">
+        <label for="salt" id="salt-label">Salt (Hash Only):</label>
+        <input type="text" id="salt">
+        <button onclick="performOperation()">Perform Operation</button>
+        <label for="result">Result:</label>
+        <textarea id="result" readonly></textarea>
+    </div>
+
+    <script>
+        function toggleCipherOptions() {
+            const operationElement = document.getElementById('operation');
+            const cipherElement = document.getElementById('cipher');
+            const cipherOptions = Array.from(cipherElement.options);
+            
+            cipherOptions.forEach(option => {
+                if(operationElement.value === 'hash') {
+                    option.style.display = option.value === 'sha-256' ? 'block' : 'none';
+                    if(option.value === 'sha-256') cipherElement.value = 'sha-256';
+                } else {
+                    option.style.display = option.value !== 'sha-256' ? 'block' : 'none';
+                    if(option.value === 'caesar') cipherElement.value = 'caesar';
+                }
+            });
+            
+            toggleShiftAndSaltInput();
+        
+        }
+
+        function toggleShiftAndSaltInput() {
+            const cipherElement = document.getElementById('cipher');
+            const shiftLabelElement = document.getElementById('shift-label');
+            const shiftElement = document.getElementById('shift');
+            const saltLabelElement = document.getElementById('salt-label');
+            const saltElement = document.getElementById('salt');
+            
+            if(cipherElement.value === 'caesar') {
+                shiftLabelElement.style.display = 'block';
+                shiftElement.style.display = 'block';
+                saltLabelElement.style.display = 'none';
+                saltElement.style.display = 'none';
+            } else if(cipherElement.value === 'sha-256') {
+                shiftLabelElement.style.display = 'none';
+                shiftElement.style.display = 'none';
+                saltLabelElement.style.display = 'block';
+                saltElement.style.display = 'block';
+            } else {
+                shiftLabelElement.style.display = 'none';
+                shiftElement.style.display = 'none';
+                saltLabelElement.style.display = 'none';
+                saltElement.style.display = 'none';
+            }
+        
+        }
+
+        window.onload = function () {
+            toggleCipherOptions();
+        };
+
+        async function performOperation() {
+    const textElement = document.getElementById('text');
+    const operationElement = document.getElementById('operation');
+    const cipherElement = document.getElementById('cipher');
+    const shiftElement = document.getElementById('shift');
+    const saltElement = document.getElementById('salt');
+    const resultElement = document.getElementById('result');
+
+    const text = textElement.value;
+    const operation = operationElement.value;
+    const cipher = cipherElement.value;
+    let result = '';
+
+    switch (cipher) {
+        case 'caesar':
+            const shift = parseInt(shiftElement.value) % 26;
+            for (let i = 0; i < text.length; i++) {
+                let charCode = text.charCodeAt(i);
+                if (charCode >= 65 && charCode <= 90) {
+                    result += String.fromCharCode((charCode - 65 + (operation === 'encrypt' ? shift : 26 - shift)) % 26 + 65);
+                } else if (charCode >= 97 && charCode <= 122) {
+                    result += String.fromCharCode((charCode - 97 + (operation === 'encrypt' ? shift : 26 - shift)) % 26 + 97);
+                } else {
+                    result += text[i];
+                }
+            }
+            break;
+        case 'atbash':
+            for (let i = 0; i < text.length; i++) {
+                let charCode = text.charCodeAt(i);
+                if (charCode >= 65 && charCode <= 90) {
+                    result += String.fromCharCode(90 - (charCode - 65));
+                } else if (charCode >= 97 && charCode <= 122) {
+                    result += String.fromCharCode(122 - (charCode - 97));
+                } else {
+                    result += text[i];
+                }
+            }
+            break;
+        case 'sha-256':
+            if (operation === 'hash') {
+                const encoder = new TextEncoder();
+                const data = encoder.encode(saltElement.value + text);
+                const hash = await crypto.subtle.digest('SHA-256', data);
+                result = Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, '0')).join('');
+            } else {
+                result = "Invalid operation for SHA-256. Only hashing is supported.";
+            }
+            break;
+    }
+    resultElement.value = result;
+}
+
+    </script>
+</body>
+</html>
