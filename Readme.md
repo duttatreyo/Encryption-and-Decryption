@@ -26,8 +26,10 @@ Python 3.x
 Required Libraries: hashlib , cryptography
 
 ## To install Libraries: 
+```
 pip install hashlib
 pip install cryptography
+```
 
 ## Example
 ```$python encrypt_or_decrypt.py```
